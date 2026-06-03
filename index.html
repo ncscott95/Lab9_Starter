@@ -21,6 +21,11 @@
       width: 60px;
     }
 
+    #order-request-num,
+    #order-available-num {
+      width: 90px;
+    }
+
     output {
       border: 1px solid gray;
       display: block;
@@ -28,6 +33,10 @@
       margin-top: 5px;
       padding: 5px;
       width: 240px;
+    }
+
+    #order-demo-output {
+      width: 360px;
     }
 
     main {
@@ -47,6 +56,14 @@
       width: 122px;
     }
   </style>
+
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({
+      token: "017512efbaaf411fa332789200204ab4"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
 </head>
 
 <body>
@@ -68,6 +85,20 @@
       </fieldset>
     </form>
 
+    <section id="try-catch-demo">
+      <fieldset>
+        <legend>Order Validation Demo</legend>
+        <label for="order-request-num">Requested</label>
+        <input id="order-request-num" name="order-request-num" />
+        <label for="order-available-num">Available</label>
+        <input id="order-available-num" name="order-available-num" />
+        <button id="order-demo-btn" type="button">Run Order Validation Demo</button>
+        <button id="custom-error-demo-btn" type="button">Run Custom Error Demo</button>
+        <br />
+        <output id="order-demo-output"></output>
+      </fieldset>
+    </section>
+
     <section id="error-btns">
       <button>Console Log</button>
       <button>Console Error</button>
@@ -87,22 +118,7 @@
     </section>
   </main>
 
-  <script>
-    let form = document.querySelector('form');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let output = document.querySelector('output');
-      let firstNum = document.querySelector('#first-num').value;
-      let secondNum = document.querySelector('#second-num').value;
-      let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
-    });
-
-    let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-
-    // Start your code here
-    // You may move this JS to another file if you wish
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
